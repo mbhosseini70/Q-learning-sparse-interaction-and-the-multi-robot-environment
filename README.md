@@ -1,79 +1,79 @@
-# Q-learning-sparse-interaction-and-the-multi-robot-environment
+# Multi-Agent Reinforcement Learning: Implementing and Evaluating Q-Learning and Sparse Interaction Algorithms
 This repository contains the implementation of Regular Q-learning and the Sparse Interaction Algorithm across three distinct environments: Basic Environment, Extended Environment, and Four-Robot Environment. The project focuses on the coordination and movement of multiple robots within gridworld scenarios, where agents must navigate to goal locations while avoiding penalties for miscoordination. The environments are implemented following the PettingZoo API.
 
 The implementation is based on the paper "[Learning of Coordination: Exploiting Sparse Interactions in Multiagent Systems](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=d970c6af606fea64bcb8a8e2a449d06e5fcc9ad6)" by Melo & Veloso (AAMAS, 2009). The approach seeks to create agents that learn the situations in which they need to coordinate and in which they don’t, by exploiting local interactions. Each agent learns from experience which situations require coordination in a setting of partial observability.
 
 
-# A Guide for Navigating the Code File
+## A Guide for Navigating the Code File
 
-## Environment Setup (Cells 1-2)
+### Environment Setup (Cells 1-2)
 
-### 1st Cell: Import Required Libraries
+#### 1st Cell: Import Required Libraries
 This section covers the import of necessary libraries.
 
-### 2nd Cell: Environment Setup and Its Visualization
+#### 2nd Cell: Environment Setup and Its Visualization
 This section contains the Environment Class definition, initialization of various environment types, and code for visualizing the environment states.
 
-## Regular Q-Learning Implementation (Cells 3-9)
+### Regular Q-Learning Implementation (Cells 3-9)
 
-### 3rd Cell: Regular Q-Learning Implementation
+#### 3rd Cell: Regular Q-Learning Implementation
 This part includes the QLearningAgent Class, function for running the algorithm, function for evaluating the algorithm, the main execution block, and the plotting function.
 
-### 4th Cell: The Execution of Regular Q-Learning on Basic Environment
+#### 4th Cell: The Execution of Regular Q-Learning on Basic Environment
 This part includes the main execution block that runs the learning process in the basic environments.
 
-### 5th Cell: The Visualization of Regular Q-Learning on Basic Environment
+#### 5th Cell: The Visualization of Regular Q-Learning on Basic Environment
 This part includes the visualization of the results for the basic environments.
 
-### 6th Cell: The Execution of Regular Q-Learning on Extended Environment
+#### 6th Cell: The Execution of Regular Q-Learning on Extended Environment
 This part includes the main execution block that runs the learning process in the extended environments.
 
-### 7th Cell: The Visualization of Regular Q-Learning on Extended Environment
+#### 7th Cell: The Visualization of Regular Q-Learning on Extended Environment
 This part includes the visualization of the results for the extended environments.
 
-### 8th Cell: The Execution of Regular Q-Learning on Four_Robot Environment
+#### 8th Cell: The Execution of Regular Q-Learning on Four_Robot Environment
 This part includes the main execution block that runs the learning process in the Four_Robot environments.
 
-### 9th Cell: The Visualization of Regular Q-Learning on Four_Robot Environment
+#### 9th Cell: The Visualization of Regular Q-Learning on Four_Robot Environment
 This part includes the visualization of the results for the Four_Robot environments.
 
-## Sparse Interaction Algorithm Implementation (Cells 10-18)
+### Sparse Interaction Algorithm Implementation (Cells 10-18)
 
-### 10th Cell: Environment Setup for Sparse Interaction Algorithm
+#### 10th Cell: Environment Setup for Sparse Interaction Algorithm
 This part sets up the environment for the Sparse Interaction Algorithm.
 
-### 11th Cell: Sparse Interaction Algorithm Implementation
+#### 11th Cell: Sparse Interaction Algorithm Implementation
 This section features a class that implements the Sparse Interaction Algorithm. It also includes a demonstration consisting of two episodes, showcasing the agents' decision-making process in the environment. Note that this process is the first step of training; the actions taken are predominantly random.
 
-### 12th Cell: Functions to Run sparse interaction algorithm
+#### 12th Cell: Functions to Run sparse interaction algorithm
 This part includes function for running the algorithm in each episode, function for evaluating the algorithm, the main execution block, and the plotting function.
 
-### 13th Cell: The Execution of Sparse Interaction Algorithm on Basic Environment
+#### 13th Cell: The Execution of Sparse Interaction Algorithm on Basic Environment
 This part includes the main execution block that runs the learning process in the basic environments.
 
-### 14th Cell: The Visualization of Sparse Interaction Algorithm on Basic Environment
+#### 14th Cell: The Visualization of Sparse Interaction Algorithm on Basic Environment
 This part includes the visualization of the results for the basic environments.
 
-### 15th Cell: The Execution of Sparse Interaction Algorithm on Extended Environment
+#### 15th Cell: The Execution of Sparse Interaction Algorithm on Extended Environment
 This part includes the main execution block that runs the learning process in the extended environments.
 
-### 16th Cell: The Visualization of Sparse Interaction Algorithm on Extended Environment
+#### 16th Cell: The Visualization of Sparse Interaction Algorithm on Extended Environment
 This part includes the visualization of the results for the extended environments.
 
-### 17th Cell: The Execution of Sparse Interaction Algorithm on Four_Robot Environment
+#### 17th Cell: The Execution of Sparse Interaction Algorithm on Four_Robot Environment
 This part includes the main execution block that runs the learning process in the Four_Robot environments.
 
-### 18th Cell: The Visualization of Sparse Interaction Algorithm on Four_Robot Environment
+#### 18th Cell: The Visualization of Sparse Interaction Algorithm on Four_Robot Environment
 This part includes the visualization of the results for the Four_Robot environments.
 
 
-# Project Deatil
+## Project Deatil
 
-## Environments
+### Environments
 
 Designing and implementing environments play an important role in our project. We follow the PettingZoo API, a multi-agent extension of the Gymnasium API, to simulate different environments for reinforcement learning. Our environments are of a parallel nature, utilizing the `ParallelEnv` class.
 
-### Key Components
+#### Key Components
 1. **Initialization (`__init__`):** The constructor initializes an instance of the `Environments` class.
 2. **Environment Initialization (`init_environment`):** Specifies the type of environment (`basic`, `extended`, or `four_robot`) and calls the respective initialization functions.
 3. **Common Environment Initialization (`init_common_environment`):** Defines attributes shared by all environments, such as penalties, agent positions, and coordination actions.
@@ -87,21 +87,21 @@ Designing and implementing environments play an important role in our project. W
 11. **Observe (`observe`):** Converts the grid environment to an array.
 12. **Render (`render`):** Renders a visual representation of the environment.
 
-## Initial State of Each Environment
+### Initial State of Each Environment
 
-### Basic Environment
+#### Basic Environment
 - **Render Output:** A grid.
 - **Observe Output:** An array from the perspective of different agents, with specific values for the agent, other agents, goals, and doorways.
 
-### Extended Environment
+#### Extended Environment
 - Similar structure with more complex features.
 
-### Four-Robot Environment
+#### Four-Robot Environment
 - Initial positions of each agent are the goals of other agents. Prioritizes showing agent names over goals.
 
-## Algorithms
+### Algorithms
 
-### Regular Q-learning
+#### Regular Q-learning
 
 **Class: `QLearningAgent`**
 1. **Initialization (`__init__`):** Sets up parameters like the number of states, actions, learning rate, discount factor, exploration rate, minimum exploration rate, and epsilon decay.
@@ -116,7 +116,7 @@ Designing and implementing environments play an important role in our project. W
 3. **Run Simulation (`run_simulation`):** Simulates multiple runs of training and evaluation episodes.
 4. **Plot Results (`plot_training_evaluation_results`):** Plots training and evaluation results.
 
-### Sparse Interaction Algorithm
+#### Sparse Interaction Algorithm
 
 **Class: `SparseInteractionLearningAgent`**
 1. **Initialization and Methods:** Similar structure with additional methods for sparse interaction.
@@ -130,11 +130,11 @@ Designing and implementing environments play an important role in our project. W
 3. **Run Simulation (`run_simulation2`):** Similar to `run_simulation` with additional logic for sparse interaction.
 4. **Plot Results (`plot_training_evaluation_results`):** Similar to `plot_training_evaluation_results`.
 
-## Discussion
+### Discussion
 
-### Q-Learning Results
+#### Q-Learning Results
 - **Basic Environment:** Agents initially exhibit random behavior but learn to reduce miscoordination and achieve goals over time, increasing rewards and efficiency.
 - **Extended and Four-Robot Environments:** More complex, but similar learning patterns observed.
 
-### Comparison with Sparse Interaction Algorithm
+#### Comparison with Sparse Interaction Algorithm
 - **Convergence:** Sparse Interaction Algorithm converges slower but yields better results, reducing miscoordination to zero and increasing rewards by learning efficient cooperation strategies.
