@@ -67,4 +67,74 @@ This part includes the main execution block that runs the learning process in th
 This part includes the visualization of the results for the Four_Robot environments.
 
 
+# Project Deatil
 
+## Environments
+
+Designing and implementing environments play an important role in our project. We follow the PettingZoo API, a multi-agent extension of the Gymnasium API, to simulate different environments for reinforcement learning. Our environments are of a parallel nature, utilizing the `ParallelEnv` class.
+
+### Key Components
+1. **Initialization (`__init__`):** The constructor initializes an instance of the `Environments` class.
+2. **Environment Initialization (`init_environment`):** Specifies the type of environment (`basic`, `extended`, or `four_robot`) and calls the respective initialization functions.
+3. **Common Environment Initialization (`init_common_environment`):** Defines attributes shared by all environments, such as penalties, agent positions, and coordination actions.
+4. **Movement (`direction_offsets`):** Converts action indices into directional movements within a grid.
+5. **Reset (`reset`):** Resets the environment to its initial state.
+6. **Step (`step`):** Processes actions for all agents, updates the environment state, and checks for miscoordination.
+7. **Update Rewards and Dones (`update_rewards_and_dones`):** Updates rewards and done status based on agent positions and actions.
+8. **Miscoordination Check (`is_miscoordination`):** Checks for miscoordination among agents.
+9. **Apply Action (`apply_action`):** Applies an action with a certain success rate.
+10. **Goal (`goal`):** Returns the goal position for each agent.
+11. **Observe (`observe`):** Converts the grid environment to an array.
+12. **Render (`render`):** Renders a visual representation of the environment.
+
+## Initial State of Each Environment
+
+### Basic Environment
+- **Render Output:** A grid.
+- **Observe Output:** An array from the perspective of different agents, with specific values for the agent, other agents, goals, and doorways.
+
+### Extended Environment
+- Similar structure with more complex features.
+
+### Four-Robot Environment
+- Initial positions of each agent are the goals of other agents. Prioritizes showing agent names over goals.
+
+## Algorithms
+
+### Regular Q-learning
+
+**Class: `QLearningAgent`**
+1. **Initialization (`__init__`):** Sets up parameters like the number of states, actions, learning rate, discount factor, exploration rate, minimum exploration rate, and epsilon decay.
+2. **Select Action (`select_action`):** Decides whether to explore or exploit based on epsilon value.
+3. **Update Q-Table (`update_q_table`):** Updates Q-values using Temporal Difference learning.
+4. **Decay Epsilon (`decay_epsilon`):** Decays the epsilon value after each episode.
+5. **Reset Epsilon (`reset_epsilon`):** Resets epsilon to one at the end of each run.
+
+**Running the Environment**
+1. **Run Episode (`run_episode`):** Runs an episode, updating Q-tables and tracking metrics.
+2. **Evaluate Agent (`evaluate_agent`):** Evaluates an agent's performance over multiple episodes.
+3. **Run Simulation (`run_simulation`):** Simulates multiple runs of training and evaluation episodes.
+4. **Plot Results (`plot_training_evaluation_results`):** Plots training and evaluation results.
+
+### Sparse Interaction Algorithm
+
+**Class: `SparseInteractionLearningAgent`**
+1. **Initialization and Methods:** Similar structure with additional methods for sparse interaction.
+2. **Active Perception (`active_perception`):** Acts like a camera to detect nearby agents.
+3. **Update Rewards and Dones (`update_rewards_and_dones`):** Penalizes agents based on coordination actions.
+4. **Apply Action (`apply_action`):** Updates the agent's position based on the action.
+
+**Running the Environment**
+1. **Run Episode (`run_episode2`):** Similar to `run_episode` with additional logic for sparse interaction.
+2. **Evaluate Agent (`evaluate_agent2`):** Similar to `evaluate_agent` with additional logic for sparse interaction.
+3. **Run Simulation (`run_simulation2`):** Similar to `run_simulation` with additional logic for sparse interaction.
+4. **Plot Results (`plot_training_evaluation_results`):** Similar to `plot_training_evaluation_results`.
+
+## Discussion
+
+### Q-Learning Results
+- **Basic Environment:** Agents initially exhibit random behavior but learn to reduce miscoordination and achieve goals over time, increasing rewards and efficiency.
+- **Extended and Four-Robot Environments:** More complex, but similar learning patterns observed.
+
+### Comparison with Sparse Interaction Algorithm
+- **Convergence:** Sparse Interaction Algorithm converges slower but yields better results, reducing miscoordination to zero and increasing rewards by learning efficient cooperation strategies.
